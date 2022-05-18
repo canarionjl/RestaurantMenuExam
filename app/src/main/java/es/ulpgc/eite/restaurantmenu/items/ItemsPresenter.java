@@ -5,6 +5,7 @@ import android.util.Log;
 import java.lang.ref.WeakReference;
 
 import es.ulpgc.eite.restaurantmenu.app.AppMediator;
+import es.ulpgc.eite.restaurantmenu.app.SectionsToItemsState;
 
 /**
  * Created by Luis on marzo, 2022
@@ -40,6 +41,13 @@ public class ItemsPresenter implements ItemsContract.Presenter {
   @Override
   public void onResume() {
     Log.e(TAG, "onResume()");
+
+    SectionsToItemsState sectionToItemState = mediator.getSectionsToItemsState();
+    if(sectionToItemState!=null) {
+        state.itemsSection = sectionToItemState.itemsSection;
+    }
+
+    view.get().onDataUpdated(state);
 
     // TODO: include some code if is necessary
 

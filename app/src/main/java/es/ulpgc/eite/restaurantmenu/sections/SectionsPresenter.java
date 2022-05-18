@@ -3,8 +3,11 @@ package es.ulpgc.eite.restaurantmenu.sections;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 import es.ulpgc.eite.restaurantmenu.app.AppMediator;
+import es.ulpgc.eite.restaurantmenu.app.SectionsToItemsState;
+import es.ulpgc.eite.restaurantmenu.data.MenuItem;
 
 /**
  * Created by Luis on marzo, 2022
@@ -26,8 +29,7 @@ public class SectionsPresenter implements SectionsContract.Presenter {
   @Override
   public void onStart() {
     Log.e(TAG, "onStart()");
-
-    // TODO: include some code if is necessary
+    state.data = model.getStoredData();
 
   }
 
@@ -43,6 +45,7 @@ public class SectionsPresenter implements SectionsContract.Presenter {
   public void onResume() {
     Log.e(TAG, "onResume()");
 
+    view.get().onDataUpdated(state);
     // TODO: include some code if is necessary
   }
 
@@ -71,12 +74,18 @@ public class SectionsPresenter implements SectionsContract.Presenter {
   public void onStartersBtnClicked() {
     Log.e(TAG, "onStartersBtnClicked()");
 
+    passDataFromSectionsToItemsState(state.data.itemsStarters);
+    view.get().navigateToMenuDetailScreen();
+
     // TODO: include some code if is necessary
   }
 
   @Override
   public void onMainCoursesBtnClicked() {
     Log.e(TAG, "onMainCoursesBtnClicked()");
+
+    passDataFromSectionsToItemsState(state.data.itemsMainCourses);
+    view.get().navigateToMenuDetailScreen();
 
     // TODO: include some code if is necessary
   }
@@ -85,7 +94,16 @@ public class SectionsPresenter implements SectionsContract.Presenter {
   public void onDessertsBtnClicked() {
     Log.e(TAG, "onDessertsBtnClicked()");
 
+    passDataFromSectionsToItemsState(state.data.itemsDesserts);
+    view.get().navigateToMenuDetailScreen();
+
     // TODO: include some code if is necessary
+  }
+
+  public void passDataFromSectionsToItemsState (List<MenuItem> list){
+    SectionsToItemsState state = new SectionsToItemsState();
+    state.itemsSection = list;
+    mediator.setSectionsToItemsState(state);
   }
 
 

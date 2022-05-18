@@ -1,5 +1,6 @@
 package es.ulpgc.eite.restaurantmenu.sections;
 
+import es.ulpgc.eite.restaurantmenu.data.MenuItems;
 import es.ulpgc.eite.restaurantmenu.data.MenuSection;
 
 /**
@@ -7,7 +8,6 @@ import es.ulpgc.eite.restaurantmenu.data.MenuSection;
  */
 public class SectionsState extends SectionsViewModel {
 
-  // put the model state here
-  public MenuSection menuSection;
+  public MenuItems data;
 
 }

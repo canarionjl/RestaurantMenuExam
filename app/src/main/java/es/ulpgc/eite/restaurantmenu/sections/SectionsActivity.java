@@ -3,6 +3,7 @@ package es.ulpgc.eite.restaurantmenu.sections;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -107,6 +108,12 @@ public class SectionsActivity
       }
     });
 
+  }
+
+  @Override
+  public void navigateToMenuDetailScreen() {
+    Intent intent = new Intent(this, ItemsActivity.class);
+    startActivity(intent);
   }
 
   @Override

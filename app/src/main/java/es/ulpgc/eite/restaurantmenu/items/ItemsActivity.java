@@ -2,6 +2,7 @@ package es.ulpgc.eite.restaurantmenu.items;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,8 @@ public class ItemsActivity
     // do the setup
     ItemsScreen.configure(this);
 
+    setOnClickListeners();
+
     if (savedInstanceState == null) {
       presenter.onStart();
 
@@ -40,7 +43,6 @@ public class ItemsActivity
   protected void onResume() {
     super.onResume();
 
-    // load the data
     presenter.onResume();
   }
 
@@ -72,6 +74,23 @@ public class ItemsActivity
 
   public void onFirstBtnClicked(View view) {
     presenter.onFirstBtnClicked();
+  }
+
+  public void setOnClickListeners(){
+    ((LinearLayout) findViewById(R.id.btnFirst)).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        onFirstBtnClicked(view);
+      }
+    });
+
+    ((LinearLayout) findViewById(R.id.btnSecond)).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        onSecondBtnClicked(view);
+      }
+    });
+
   }
 
 

@@ -12,6 +12,9 @@ import es.ulpgc.eite.restaurantmenu.data.MenuItem;
 /**
  * Created by Luis on marzo, 2022
  */
+
+//Repositorio de github: https://github.com/canarionjl/RestaurantMenuExam
+
 public class ItemsPresenter implements ItemsContract.Presenter {
 
   public static String TAG = "RestaurantMenu.ItemsPresenter";

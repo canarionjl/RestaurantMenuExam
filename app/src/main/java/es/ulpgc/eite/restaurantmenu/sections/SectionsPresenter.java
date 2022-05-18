@@ -6,6 +6,7 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 
 import es.ulpgc.eite.restaurantmenu.app.AppMediator;
+import es.ulpgc.eite.restaurantmenu.app.ItemsToSectionsState;
 import es.ulpgc.eite.restaurantmenu.app.SectionsToItemsState;
 import es.ulpgc.eite.restaurantmenu.data.MenuItem;
 
@@ -30,6 +31,7 @@ public class SectionsPresenter implements SectionsContract.Presenter {
   public void onStart() {
     Log.e(TAG, "onStart()");
     state.data = model.getStoredData();
+    prepareState();
 
   }
 
@@ -43,8 +45,28 @@ public class SectionsPresenter implements SectionsContract.Presenter {
 
   @Override
   public void onResume() {
-    Log.e(TAG, "onResume()");
+    Log.e(TAG, "onResumeSection()");
 
+    ItemsToSectionsState itemsToSectionsState = mediator.getItemsToSectionsState();
+    if(itemsToSectionsState!=null){
+
+      if(state.startersButtonClicked){
+        state.startersButtonClicked=false;
+        state.itemStarters=itemsToSectionsState.itemSection;
+      }
+      if(state.mainCoursesButtonClicked){
+
+        state.mainCoursesButtonClicked=false;
+        state.itemMainCourses=itemsToSectionsState.itemSection;
+      }
+      if(state.dessertsButtonClicked) {
+        state.dessertsButtonClicked = false;
+        state.itemDesserts = itemsToSectionsState.itemSection;
+
+      }
+    }
+
+    calculateTotalPrice();
     view.get().onDataUpdated(state);
     // TODO: include some code if is necessary
   }
@@ -74,6 +96,7 @@ public class SectionsPresenter implements SectionsContract.Presenter {
   public void onStartersBtnClicked() {
     Log.e(TAG, "onStartersBtnClicked()");
 
+    state.startersButtonClicked=true;
     passDataFromSectionsToItemsState(state.data.itemsStarters);
     view.get().navigateToMenuDetailScreen();
 
@@ -84,6 +107,7 @@ public class SectionsPresenter implements SectionsContract.Presenter {
   public void onMainCoursesBtnClicked() {
     Log.e(TAG, "onMainCoursesBtnClicked()");
 
+    state.mainCoursesButtonClicked=true;
     passDataFromSectionsToItemsState(state.data.itemsMainCourses);
     view.get().navigateToMenuDetailScreen();
 
@@ -94,6 +118,7 @@ public class SectionsPresenter implements SectionsContract.Presenter {
   public void onDessertsBtnClicked() {
     Log.e(TAG, "onDessertsBtnClicked()");
 
+    state.dessertsButtonClicked=true;
     passDataFromSectionsToItemsState(state.data.itemsDesserts);
     view.get().navigateToMenuDetailScreen();
 
@@ -106,7 +131,29 @@ public class SectionsPresenter implements SectionsContract.Presenter {
     mediator.setSectionsToItemsState(state);
   }
 
+  public void calculateTotalPrice(){
+    int starterPrice=0;
+    int mainCoursePrice=0;
+    int dessertsPrice=0;
+   if(state.itemStarters!=null){
+      starterPrice=state.itemStarters.itemPrice;
+    }
+    if(state.itemMainCourses!=null){
+      mainCoursePrice=state.itemMainCourses.itemPrice;
+    }
+    if(state.itemDesserts!=null){
+      dessertsPrice=state.itemDesserts.itemPrice;
+    }
 
+    state.priceMenu=starterPrice+mainCoursePrice+dessertsPrice;
+
+  }
+  public void prepareState (){
+
+    state.dessertsButtonClicked=false;
+    state.startersButtonClicked=false;
+    state.mainCoursesButtonClicked=false;
+  }
   @Override
   public void injectView(WeakReference<SectionsContract.View> view) {
     this.view = view;

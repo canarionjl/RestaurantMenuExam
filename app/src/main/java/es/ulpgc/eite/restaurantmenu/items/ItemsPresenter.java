@@ -5,7 +5,9 @@ import android.util.Log;
 import java.lang.ref.WeakReference;
 
 import es.ulpgc.eite.restaurantmenu.app.AppMediator;
+import es.ulpgc.eite.restaurantmenu.app.ItemsToSectionsState;
 import es.ulpgc.eite.restaurantmenu.app.SectionsToItemsState;
+import es.ulpgc.eite.restaurantmenu.data.MenuItem;
 
 /**
  * Created by Luis on marzo, 2022
@@ -77,18 +79,25 @@ public class ItemsPresenter implements ItemsContract.Presenter {
 
   @Override
   public void onFirstBtnClicked() {
-    Log.e(TAG, "onFirstBtnClicked()");
+    state.menuItemClicked=state.itemsSection.get(0);
+    passDataFromItemsToSectionsState();
+    view.get().navigateToPreviousScreen();
 
     // TODO: include some code if is necessary
   }
 
   @Override
   public void onSecondBtnClicked() {
-    Log.e(TAG, "onSecondBtnClicked()");
-
-    // TODO: include some code if is necessary
+    state.menuItemClicked=state.itemsSection.get(1);
+    passDataFromItemsToSectionsState();
+    view.get().navigateToPreviousScreen();
   }
 
+  public void passDataFromItemsToSectionsState (){
+    ItemsToSectionsState itemsToSectionsState = new ItemsToSectionsState();
+    itemsToSectionsState.itemSection=state.menuItemClicked;
+    mediator.setItemsToSectionsState(itemsToSectionsState);
+  }
 
   @Override
   public void injectView(WeakReference<ItemsContract.View> view) {

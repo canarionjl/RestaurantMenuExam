@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Restaurant Menu</string>
+    <string name="title_sections_screen">Menu Sections</string>
+    <string name="title_items_screen">Menu Items</string>
+    <!--
+    <string name="title_sections_screen">Restaurant: Menu Sections</string>
+    <string name="title_items_screen">Restaurant: Menu Items</string>
+    -->
+    <string name="title_starters">Starters</string>
+    <string name="title_main_courses">Main Courses</string>
+    <string name="title_desserts">Desserts</string>
+    <string name="title_total_price">Total Price</string>
+    <string name="title_item_empty">\???</string>
+<!--    <string name="title_select_item">Click to choose one...</string>-->
+    <string name="title_select_item">Choose one...</string>
+    <string name="price_item_empty">0 euros</string>
+    <string name="title_second_item">Second Item</string>
+    <string name="title_first_item">First Item</string>
+
+
+</resources>

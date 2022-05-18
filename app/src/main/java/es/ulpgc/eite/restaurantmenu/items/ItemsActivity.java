@@ -42,28 +42,24 @@ public class ItemsActivity
   @Override
   protected void onResume() {
     super.onResume();
-
     presenter.onResume();
   }
 
   @Override
   public void onBackPressed() {
     super.onBackPressed();
-
     presenter.onBackPressed();
   }
 
   @Override
   protected void onPause() {
     super.onPause();
-
     presenter.onPause();
   }
 
   @Override
   protected void onDestroy() {
     super.onDestroy();
-
     presenter.onDestroy();
   }
 
@@ -93,12 +89,9 @@ public class ItemsActivity
 
   }
 
-
   @Override
   public void onDataUpdated(ItemsViewModel viewModel) {
-    //Log.e(TAG, "onDataUpdated()");
 
-    // deal with the data
     if (viewModel.itemsSection != null) {
       ((TextView) findViewById(R.id.tvNameFirst))
           .setText(viewModel.itemsSection.get(0).itemName);
@@ -122,6 +115,5 @@ public class ItemsActivity
   public void injectPresenter(ItemsContract.Presenter presenter) {
     this.presenter = presenter;
   }
-
 
 }

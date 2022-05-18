@@ -28,21 +28,14 @@ public class ItemsPresenter implements ItemsContract.Presenter {
 
   @Override
   public void onStart() {
-    Log.e(TAG, "onStart()");
-
-    // TODO: include some code if is necessary
   }
 
   @Override
   public void onRestart() {
-    Log.e(TAG, "onRestart()");
-
-    // TODO: include some code if is necessary
   }
 
   @Override
   public void onResume() {
-    Log.e(TAG, "onResume()");
 
     SectionsToItemsState sectionToItemState = mediator.getSectionsToItemsState();
     if(sectionToItemState!=null) {
@@ -51,29 +44,20 @@ public class ItemsPresenter implements ItemsContract.Presenter {
 
     view.get().onDataUpdated(state);
 
-    // TODO: include some code if is necessary
-
   }
 
   @Override
   public void onBackPressed() {
-    Log.e(TAG, "onBackPressed()");
 
-    // TODO: include some code if is necessary
   }
 
   @Override
   public void onPause() {
-    Log.e(TAG, "onPause()");
 
-    // TODO: include some code if is necessary
   }
 
   @Override
   public void onDestroy() {
-    Log.e(TAG, "onDestroy()");
-
-    // TODO: include some code if is necessary
   }
 
 
@@ -82,8 +66,6 @@ public class ItemsPresenter implements ItemsContract.Presenter {
     state.menuItemClicked=state.itemsSection.get(0);
     passDataFromItemsToSectionsState();
     view.get().navigateToPreviousScreen();
-
-    // TODO: include some code if is necessary
   }
 
   @Override

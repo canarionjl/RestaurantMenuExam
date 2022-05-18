@@ -9,7 +9,6 @@ import es.ulpgc.eite.restaurantmenu.data.MenuItem;
  */
 public class ItemsViewModel {
 
-  // put the view state here
   public List<MenuItem> itemsSection;
 
 }

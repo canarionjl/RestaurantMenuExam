@@ -25,12 +25,11 @@ public class SectionsActivity
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_sections);
     getSupportActionBar().setTitle(R.string.title_sections_screen);
 
-
-    // do the setup
     SectionsScreen.configure(this);
 
     setOnClickListeners();
@@ -47,29 +46,24 @@ public class SectionsActivity
   @Override
   protected void onResume() {
     super.onResume();
-
-    // load the data
     presenter.onResume();
   }
 
   @Override
   public void onBackPressed() {
     super.onBackPressed();
-
     presenter.onBackPressed();
   }
 
   @Override
   protected void onPause() {
     super.onPause();
-
     presenter.onPause();
   }
 
   @Override
   protected void onDestroy() {
     super.onDestroy();
-
     presenter.onDestroy();
   }
 
@@ -118,9 +112,7 @@ public class SectionsActivity
 
   @Override
   public void onDataUpdated(SectionsViewModel viewModel) {
-    //Log.e(TAG, "onDataUpdated()");
 
-    // deal with the data
     if (viewModel.itemStarters != null) {
       ((TextView) findViewById(R.id.tvItemStarters))
           .setText(viewModel.itemStarters.itemName);
@@ -142,22 +134,13 @@ public class SectionsActivity
           .setText(viewModel.itemMainCourses.itemPrice + " euros");
     }
 
-
     ((TextView) findViewById(R.id.tvPriceMenu))
         .setText(viewModel.priceMenu + " euros");
-  }
-
-
-  @Override
-  public void navigateToNextScreen() {
-    Intent intent = new Intent(this, ItemsActivity.class);
-    startActivity(intent);
   }
 
   @Override
   public void injectPresenter(SectionsContract.Presenter presenter) {
     this.presenter = presenter;
   }
-
 
 }

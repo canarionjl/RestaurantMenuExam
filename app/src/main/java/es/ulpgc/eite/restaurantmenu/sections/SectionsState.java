@@ -11,7 +11,6 @@ public class SectionsState extends SectionsViewModel {
 
   public MenuItems data;
 
-
   boolean startersButtonClicked;
   boolean mainCoursesButtonClicked;
   boolean dessertsButtonClicked;

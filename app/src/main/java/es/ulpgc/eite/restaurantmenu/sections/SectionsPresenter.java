@@ -29,23 +29,17 @@ public class SectionsPresenter implements SectionsContract.Presenter {
 
   @Override
   public void onStart() {
-    Log.e(TAG, "onStart()");
     state.data = model.getStoredData();
     prepareState();
-
   }
 
   @Override
   public void onRestart() {
-    Log.e(TAG, "onRestart()");
-
-    // TODO: include some code if is necessary
   }
 
 
   @Override
   public void onResume() {
-    Log.e(TAG, "onResumeSection()");
 
     ItemsToSectionsState itemsToSectionsState = mediator.getItemsToSectionsState();
     if(itemsToSectionsState!=null){
@@ -68,61 +62,48 @@ public class SectionsPresenter implements SectionsContract.Presenter {
 
     calculateTotalPrice();
     view.get().onDataUpdated(state);
-    // TODO: include some code if is necessary
   }
 
   @Override
   public void onBackPressed() {
-    Log.e(TAG, "onBackPressed()");
 
-    // TODO: include some code if is necessary
   }
 
   @Override
   public void onPause() {
-    Log.e(TAG, "onPause()");
 
-    // TODO: include some code if is necessary
   }
 
   @Override
   public void onDestroy() {
-    Log.e(TAG, "onDestroy()");
 
-    // TODO: include some code if is necessary
   }
 
   @Override
   public void onStartersBtnClicked() {
-    Log.e(TAG, "onStartersBtnClicked()");
 
     state.startersButtonClicked=true;
     passDataFromSectionsToItemsState(state.data.itemsStarters);
     view.get().navigateToMenuDetailScreen();
 
-    // TODO: include some code if is necessary
   }
 
   @Override
   public void onMainCoursesBtnClicked() {
-    Log.e(TAG, "onMainCoursesBtnClicked()");
 
     state.mainCoursesButtonClicked=true;
     passDataFromSectionsToItemsState(state.data.itemsMainCourses);
     view.get().navigateToMenuDetailScreen();
 
-    // TODO: include some code if is necessary
   }
 
   @Override
   public void onDessertsBtnClicked() {
-    Log.e(TAG, "onDessertsBtnClicked()");
 
     state.dessertsButtonClicked=true;
     passDataFromSectionsToItemsState(state.data.itemsDesserts);
     view.get().navigateToMenuDetailScreen();
 
-    // TODO: include some code if is necessary
   }
 
   public void passDataFromSectionsToItemsState (List<MenuItem> list){
@@ -131,25 +112,30 @@ public class SectionsPresenter implements SectionsContract.Presenter {
     mediator.setSectionsToItemsState(state);
   }
 
-  public void calculateTotalPrice(){
-    int starterPrice=0;
-    int mainCoursePrice=0;
-    int dessertsPrice=0;
+  public void calculateTotalPrice() {
+    int starterPrice;
+    int mainCoursePrice;
+    int dessertsPrice;
+
    if(state.itemStarters!=null){
       starterPrice=state.itemStarters.itemPrice;
+    } else {
+     starterPrice = 0;
     }
     if(state.itemMainCourses!=null){
       mainCoursePrice=state.itemMainCourses.itemPrice;
+    } else {
+      mainCoursePrice = 0;
     }
     if(state.itemDesserts!=null){
       dessertsPrice=state.itemDesserts.itemPrice;
+    } else {
+      dessertsPrice = 0;
     }
 
     state.priceMenu=starterPrice+mainCoursePrice+dessertsPrice;
-
   }
   public void prepareState (){
-
     state.dessertsButtonClicked=false;
     state.startersButtonClicked=false;
     state.mainCoursesButtonClicked=false;

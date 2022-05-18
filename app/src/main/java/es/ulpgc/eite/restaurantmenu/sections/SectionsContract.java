@@ -15,7 +15,7 @@ public interface SectionsContract {
     void navigateToMenuDetailScreen();
 
     void onDataUpdated(SectionsViewModel viewModel);
-    void navigateToNextScreen();
+
   }
 
   interface Presenter {

@@ -21,7 +21,7 @@ public class ItemsModel implements ItemsContract.Model {
 
   @Override
   public List<MenuItem> getStoredData() {
-    // Log.e(TAG, "getStoredData()");
+
     return data;
   }
 
